@@ -10,6 +10,10 @@ jobs:
         steps:
             - uses: actions/checkout@v4
 
+            - name: Build nrustffi-test-lib
+              run: cargo build
+              working-directory: tests/nrustffi-test-lib
+
             - name: Setup .NET
               uses: actions/setup-dotnet@v4
               with:
@@ -20,10 +24,6 @@ jobs:
 
             - name: Build NRustFfi
               run: dotnet build --no-restore
-
-            - name: Build nrustffi-test-lib
-              run: cargo build
-              working-directory: tests/nrustffi-test-lib
 
             - name: Run tests
               run: dotnet run --no-build
