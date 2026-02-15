@@ -6,10 +6,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NRustFfi", "src\NRustFfi\NR
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NRustFfi.Tests", "tests\NRustFfi.Tests\NRustFfi.Tests.csproj", "{DB9BE505-2335-4A48-8C87-07F01918FA29}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NRustFfi.Benchmarks", "benchmarks\NRustFfi.Benchmarks\NRustFfi.Benchmarks.csproj", "{8673A4BC-9E90-48BB-9D27-F5A858C640F7}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NRustFfi.WebDemo", "webdemo\NRustFfi.WebDemo\NRustFfi.WebDemo.csproj", "{D3360825-4BF2-14BC-A78F-4349FEE5A0DD}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,14 +20,6 @@ Global
 		{DB9BE505-2335-4A48-8C87-07F01918FA29}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DB9BE505-2335-4A48-8C87-07F01918FA29}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DB9BE505-2335-4A48-8C87-07F01918FA29}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8673A4BC-9E90-48BB-9D27-F5A858C640F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8673A4BC-9E90-48BB-9D27-F5A858C640F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8673A4BC-9E90-48BB-9D27-F5A858C640F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8673A4BC-9E90-48BB-9D27-F5A858C640F7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D3360825-4BF2-14BC-A78F-4349FEE5A0DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D3360825-4BF2-14BC-A78F-4349FEE5A0DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D3360825-4BF2-14BC-A78F-4349FEE5A0DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D3360825-4BF2-14BC-A78F-4349FEE5A0DD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
