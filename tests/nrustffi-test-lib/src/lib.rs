@@ -23,9 +23,9 @@ pub async extern "C" fn sleep_and_get_u32(millis: u64) -> u32 {
 
 #[async_ffi::async_ffi]
 #[unsafe(no_mangle)]
-pub async extern "C" fn sleep_and_get_const_str(millis: u64) -> FFIStr<'static> {
+pub async extern "C" fn sleep_and_get_static_str(millis: u64) -> FFIStr<'static> {
     smol::Timer::after(Duration::from_millis(millis)).await;
-    "A const str from Rust!".into()
+    "A static str from Rust!".into()
 }
 
 #[async_ffi::async_ffi]

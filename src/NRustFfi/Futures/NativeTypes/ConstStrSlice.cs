@@ -4,22 +4,22 @@ using NRustFfi.NativeTypes;
 namespace NRustFfi.Futures.NativeTypes;
 
 [StructLayout(LayoutKind.Sequential)]
-public struct FutureConstStrSlice : IFuture<PollConstStrSlice, StrSlice>
+public struct FutureStaticStrSlice : IFuture<PollStaticStrSlice, StrSlice>
 {
     internal nint Fut;
     internal PollCallback Poll;
     internal DropFuture Drop;
 
-    PollConstStrSlice IFuture<PollConstStrSlice, StrSlice>.Poll(ref Context context) => Poll(Fut, ref context);
+    PollStaticStrSlice IFuture<PollStaticStrSlice, StrSlice>.Poll(ref Context context) => Poll(Fut, ref context);
 
-    void IFuture<PollConstStrSlice, StrSlice>.Drop() => Drop(Fut);
+    void IFuture<PollStaticStrSlice, StrSlice>.Drop() => Drop(Fut);
 
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-    internal delegate PollConstStrSlice PollCallback(nint fut, ref Context context);
+    internal delegate PollStaticStrSlice PollCallback(nint fut, ref Context context);
 }
 
 [StructLayout(LayoutKind.Sequential)]
-internal struct PollConstStrSlice : IPoll<StrSlice>
+internal struct PollStaticStrSlice : IPoll<StrSlice>
 {
     internal PollDiscriminant State;
     internal StrSlice Value;

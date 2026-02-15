@@ -67,41 +67,41 @@ internal struct PollOptionUsize : IPoll<nuint>
 }
 
 [StructLayout(LayoutKind.Explicit)]
-internal struct ResultUsizeConstStrSliceUnion
+internal struct ResultUsizeStaticStrSliceUnion
 {
     [FieldOffset(0)] internal nuint Value;
     [FieldOffset(0)] internal StrSlice Error;
 }
 
 [StructLayout(LayoutKind.Sequential)]
-internal struct ResultUsizeConstStrSlice
+internal struct ResultUsizeStaticStrSlice
 {
     internal ResultDiscriminant Discriminant;
-    internal ResultUsizeConstStrSliceUnion Union;
+    internal ResultUsizeStaticStrSliceUnion Union;
 }
 
 [StructLayout(LayoutKind.Sequential)]
-public struct FutureResultUsizeConstStrSlice : IFuture<PollResultUsizeConstStrSlice, ResultUsizeConstStrSlice>
+public struct FutureResultUsizeStaticStrSlice : IFuture<PollResultUsizeStaticStrSlice, ResultUsizeStaticStrSlice>
 {
     internal nint Fut;
     internal PollCallback Poll;
     internal DropFuture Drop;
 
-    PollResultUsizeConstStrSlice IFuture<PollResultUsizeConstStrSlice, ResultUsizeConstStrSlice>.Poll(ref Context context) => Poll(Fut, ref context);
+    PollResultUsizeStaticStrSlice IFuture<PollResultUsizeStaticStrSlice, ResultUsizeStaticStrSlice>.Poll(ref Context context) => Poll(Fut, ref context);
 
-    void IFuture<PollResultUsizeConstStrSlice, ResultUsizeConstStrSlice>.Drop() => Drop(Fut);
+    void IFuture<PollResultUsizeStaticStrSlice, ResultUsizeStaticStrSlice>.Drop() => Drop(Fut);
 
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-    internal delegate PollResultUsizeConstStrSlice PollCallback(nint fut, ref Context context);
+    internal delegate PollResultUsizeStaticStrSlice PollCallback(nint fut, ref Context context);
 }
 
 [StructLayout(LayoutKind.Sequential)]
-internal struct PollResultUsizeConstStrSlice : IPoll<ResultUsizeConstStrSlice>
+internal struct PollResultUsizeStaticStrSlice : IPoll<ResultUsizeStaticStrSlice>
 {
     internal PollDiscriminant State;
-    internal ResultUsizeConstStrSlice ResultValue;
+    internal ResultUsizeStaticStrSlice ResultValue;
 
-    readonly PollDiscriminant IPoll<ResultUsizeConstStrSlice>.State => State;
+    readonly PollDiscriminant IPoll<ResultUsizeStaticStrSlice>.State => State;
 
-    readonly ResultUsizeConstStrSlice? IPoll<ResultUsizeConstStrSlice>.Value => ResultValue;
+    readonly ResultUsizeStaticStrSlice? IPoll<ResultUsizeStaticStrSlice>.Value => ResultValue;
 }

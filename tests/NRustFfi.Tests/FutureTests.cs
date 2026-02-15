@@ -22,8 +22,8 @@ internal static class NativeMethods
     [DllImport(LibraryName, EntryPoint = "sleep_and_get_u32", CallingConvention = CallingConvention.Cdecl)]
     internal static extern FutureU32 SleepAndGetU32(long millis);
 
-    [DllImport(LibraryName, EntryPoint = "sleep_and_get_const_str", CallingConvention = CallingConvention.Cdecl)]
-    internal static extern FutureConstStrSlice SleepAndGetConstStr(long millis);
+    [DllImport(LibraryName, EntryPoint = "sleep_and_get_static_str", CallingConvention = CallingConvention.Cdecl)]
+    internal static extern FutureStaticStrSlice SleepAndGetStaticStr(long millis);
 
     [DllImport(LibraryName, EntryPoint = "sleep_and_get_string", CallingConvention = CallingConvention.Cdecl)]
     internal static extern FutureString SleepAndGetString(long millis);
@@ -41,7 +41,7 @@ internal static class NativeMethods
     internal static extern FutureOptionUsize SleepAndGetOptionUsize(long millis, bool withSome);
 
     [DllImport(LibraryName, EntryPoint = "sleep_and_get_result_usize", CallingConvention = CallingConvention.Cdecl)]
-    internal static extern FutureResultUsizeConstStrSlice SleepAndGetResultUsize(long millis, bool withOk);
+    internal static extern FutureResultUsizeStaticStrSlice SleepAndGetResultUsize(long millis, bool withOk);
 }
 
 public class FutureTests
@@ -65,10 +65,10 @@ public class FutureTests
     }
 
     [Fact]
-    public async Task TestFutureConstStrSlice()
+    public async Task TestFutureStaticStrSlice()
     {
-        var s = Unsafe.SizeOf<FutureConstStrSlice>();
-        Assert.Equal("A const str from Rust!", await RustFfi.RunAsync(NativeMethods.SleepAndGetConstStr(1000), TestContext.Current.CancellationToken));
+        var s = Unsafe.SizeOf<FutureStaticStrSlice>();
+        Assert.Equal("A static str from Rust!", await RustFfi.RunAsync(NativeMethods.SleepAndGetStaticStr(1000), TestContext.Current.CancellationToken));
     }
 
     [Fact]
@@ -103,5 +103,17 @@ public class FutureTests
     {
         Assert.Equal((123, null), await RustFfi.RunAsync(NativeMethods.SleepAndGetResultUsize(1000, withOk: true), TestContext.Current.CancellationToken));
         Assert.Equal((null, "An error occurred"), await RustFfi.RunAsync(NativeMethods.SleepAndGetResultUsize(1000, withOk: false), TestContext.Current.CancellationToken));
+    }
+
+    [Fact]
+    public async Task TestFutureUsize_Cancellation()
+    {
+        var cts = new CancellationTokenSource();
+        _ = Task.Run(async () =>
+        {
+            await Task.Delay(500);
+            cts.Cancel();
+        }, TestContext.Current.CancellationToken);
+        await Assert.ThrowsAsync<OperationCanceledException>(async () => await RustFfi.RunAsync(NativeMethods.SleepAndGetUsize(1000), cts.Token));
     }
 }

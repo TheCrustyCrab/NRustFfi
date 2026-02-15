@@ -47,11 +47,11 @@ public static class RustFfi
         }
     }
 
-    public static async ValueTask<(nuint? Value, string? Error)> RunAsync(FutureResultUsizeConstStrSlice future, CancellationToken token = default)
+    public static async ValueTask<(nuint? Value, string? Error)> RunAsync(FutureResultUsizeStaticStrSlice future, CancellationToken token = default)
     {
-        var s = Marshal.SizeOf<ResultUsizeConstStrSlice>();
-        ResultUsizeConstStrSlice ? result = null;
-        if (FutureAwaiter<FutureResultUsizeConstStrSlice, PollResultUsizeConstStrSlice, ResultUsizeConstStrSlice>.TryCompleteSynchronously(future, token, out var syncResult, out var asyncAwaiter))
+        var s = Marshal.SizeOf<ResultUsizeStaticStrSlice>();
+        ResultUsizeStaticStrSlice ? result = null;
+        if (FutureAwaiter<FutureResultUsizeStaticStrSlice, PollResultUsizeStaticStrSlice, ResultUsizeStaticStrSlice>.TryCompleteSynchronously(future, token, out var syncResult, out var asyncAwaiter))
             result = syncResult!.Value;
         else
         {
@@ -75,9 +75,9 @@ public static class RustFfi
         }
     }
 
-    public static async ValueTask<string> RunAsync(FutureConstStrSlice future, CancellationToken token = default)
+    public static async ValueTask<string> RunAsync(FutureStaticStrSlice future, CancellationToken token = default)
     {
-        if (FutureAwaiter<FutureConstStrSlice, PollConstStrSlice, StrSlice>.TryCompleteSynchronously(future, token, out var syncResult, out var asyncAwaiter))
+        if (FutureAwaiter<FutureStaticStrSlice, PollStaticStrSlice, StrSlice>.TryCompleteSynchronously(future, token, out var syncResult, out var asyncAwaiter))
             return syncResult!.Value.AsString();
 
         using (asyncAwaiter)
