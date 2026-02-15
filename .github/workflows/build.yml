@@ -1,0 +1,33 @@
+name: Build & test
+
+on:
+    push:
+        branches: [master]
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+
+            - name: Setup .NET
+              uses: actions/setup-dotnet@v4
+              with:
+                dotnet-version: 9.0.x
+            
+            - name: Restore dependencies
+              run: dotnet restore
+
+            - name: Build NRustFfi
+              run: dotnet build --no-restore
+
+            - name: Build nrustffi-test-lib
+              run: cargo build
+              working-directory: tests/nrustffi-test-lib
+
+            - name: Run tests
+              run: dotnet run --no-build
+              working-directory: tests/NRustFfi.Tests
+        
+
+            
