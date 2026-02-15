@@ -7,34 +7,34 @@ namespace NRustFfi.Tests;
 
 internal static class NativeMethods
 {
-    [DllImport("nrustffi_test_lib.dll", EntryPoint = "sleep", CallingConvention = CallingConvention.Cdecl)]
+    [DllImport("nrustffi_test_lib", EntryPoint = "sleep", CallingConvention = CallingConvention.Cdecl)]
     internal static extern FutureVoid Sleep(long millis);
 
-    [DllImport("nrustffi_test_lib.dll", EntryPoint = "sleep_and_get_usize", CallingConvention = CallingConvention.Cdecl)]
+    [DllImport("nrustffi_test_lib", EntryPoint = "sleep_and_get_usize", CallingConvention = CallingConvention.Cdecl)]
     internal static extern FutureUsize SleepAndGetUsize(long millis);
 
-    [DllImport("nrustffi_test_lib.dll", EntryPoint = "sleep_and_get_u32", CallingConvention = CallingConvention.Cdecl)]
+    [DllImport("nrustffi_test_lib", EntryPoint = "sleep_and_get_u32", CallingConvention = CallingConvention.Cdecl)]
     internal static extern FutureU32 SleepAndGetU32(long millis);
 
-    [DllImport("nrustffi_test_lib.dll", EntryPoint = "sleep_and_get_const_str", CallingConvention = CallingConvention.Cdecl)]
+    [DllImport("nrustffi_test_lib", EntryPoint = "sleep_and_get_const_str", CallingConvention = CallingConvention.Cdecl)]
     internal static extern FutureConstStrSlice SleepAndGetConstStr(long millis);
 
-    [DllImport("nrustffi_test_lib.dll", EntryPoint = "sleep_and_get_string", CallingConvention = CallingConvention.Cdecl)]
+    [DllImport("nrustffi_test_lib", EntryPoint = "sleep_and_get_string", CallingConvention = CallingConvention.Cdecl)]
     internal static extern FutureString SleepAndGetString(long millis);
 
-    [DllImport("nrustffi_test_lib.dll", EntryPoint = "drop_string", CallingConvention = CallingConvention.Cdecl)]
+    [DllImport("nrustffi_test_lib", EntryPoint = "drop_string", CallingConvention = CallingConvention.Cdecl)]
     internal static extern void DropString(NativeTypes.String s);
 
-    [DllImport("nrustffi_test_lib.dll", EntryPoint = "sleep_and_panic", CallingConvention = CallingConvention.Cdecl)]
+    [DllImport("nrustffi_test_lib", EntryPoint = "sleep_and_panic", CallingConvention = CallingConvention.Cdecl)]
     internal static extern FutureVoid SleepAndPanic(long millis);
 
-    [DllImport("nrustffi_test_lib.dll", EntryPoint = "instant_panic", CallingConvention = CallingConvention.Cdecl)]
+    [DllImport("nrustffi_test_lib", EntryPoint = "instant_panic", CallingConvention = CallingConvention.Cdecl)]
     internal static extern FutureVoid InstantPanic();
 
-    [DllImport("nrustffi_test_lib.dll", EntryPoint = "sleep_and_get_option_usize", CallingConvention = CallingConvention.Cdecl)]
+    [DllImport("nrustffi_test_lib", EntryPoint = "sleep_and_get_option_usize", CallingConvention = CallingConvention.Cdecl)]
     internal static extern FutureOptionUsize SleepAndGetOptionUsize(long millis, bool withSome);
 
-    [DllImport("nrustffi_test_lib.dll", EntryPoint = "sleep_and_get_result_usize", CallingConvention = CallingConvention.Cdecl)]
+    [DllImport("nrustffi_test_lib", EntryPoint = "sleep_and_get_result_usize", CallingConvention = CallingConvention.Cdecl)]
     internal static extern FutureResultUsizeConstStrSlice SleepAndGetResultUsize(long millis, bool withOk);
 }
 
